@@ -1,0 +1,30 @@
+﻿Build Log until 7th of November
+* The first feature to be added was the standard pygame boilerplate in the Game class
+   * I decided to design in a way such that everything is contained in the game class and runs through the respective update/handle events/draw functions
+* Then I created 3 subordinate classes (currently there are 4 immediate subordinates, but merchant was created recently while the other 3 were originals)
+   * Note that each one as well as their subordinates has an update, handle events and draw function. For most classes, these just call the respective functions of their subordinate classes, i.e. combat_manager.update() would call player.update() and enemy.update() which would call update() on their respective decks, etc..
+   * Also all of these classes have a hide_ui() and a show_ui() function which does what it says
+
+
+   * Base - the least developed class as of now. It serves as the starting screen and the place where you can check your high score, start a new run, etc… Think homebase in Wildfrost
+   * Map - once a run is started, the map manages everything outside of combat. It allows the player to go into a level and gives them meta knowledge about what they will soon have to deal with
+   * CombatManager - handles everything combat related. Notably it stores the player class. It handles the flow of combat, etc
+      * The player class is what both the player and the enemy use. At this time it only had Deck and Hand as its fields, where
+         * Deck has 
+            * a field containing a list of Card - by default it is the default deck
+            * The position is determined by whether the instance of the Player class is an enemy or the player. I now regret not extending the player class to make distinct GoodPlayer vs Enemy classes, but now it is too much work to change
+         * Hand has only a field containing a list of Card, by default empty
+* I developed the player class most at the start, giving it the ability to 
+   * hit and stand - adding the corresponding calculations to the combat manager
+      * At the moment, you can control both the enemy and the player
+   * have a HUD, currently it displays the amount of gold the player has
+   * take damage - with the corresponding end of turn logic in combat manager
+* After that I added more levels to the game map and implemented logic for going from 1 level to another. These 2 steps were somewhat challenging since I started using the pygame_gui library, but the implementation was mostly intuitive and worked well
+* After that I started using the base class, adding a supporting arrow class which makes the fancy arrow flash which sends the player into the game when pressed
+* Then I implemented the multi-floor logic for the map class
+* I rewrote the game class so that it implemented the state system, so that managing everything becomes easier to expand on
+* I made the combat manager accept a Combat class when a combat is entered which updates the enemy the player is about to verse as well as the rewards the player gets from defeating the enemy
+   * And separated the combat manager into a rewards nad a combat state
+* Then I created the merchant class with all its logic as it stands now in one go.
+   * It was very similar to the combat manager in everything with the exception of 1 major issue that I spent about 70% of merchant class design on. This was caused by the next feature
+* The last feature implemented in this version is the status effects. The issue with them is that the only way I was able to implement them was with the use of a lambda function, but it is pretty much impossible to serialise a lambda function, so instead I created a general Effect() class which is serialised instead
