@@ -8,9 +8,9 @@
                 0,
                 0
             ],
-            "on_reveal_effect": "InstantHeal",
+            "on_reveal_effect": "Blindness",
             "on_reveal_effect_attrs": {
-                "heal_amount": 2
+                "duration": 2
             },
             "on_reveal_effect_target": "player",
             "on_blackjack_effect": null,
@@ -25,9 +25,9 @@
                 0,
                 0
             ],
-            "on_reveal_effect": "InstantHeal",
+            "on_reveal_effect": "Blindness",
             "on_reveal_effect_attrs": {
-                "heal_amount": 3
+                "duration": 3
             },
             "on_reveal_effect_target": "player",
             "on_blackjack_effect": null,
@@ -42,9 +42,9 @@
                 0,
                 0
             ],
-            "on_reveal_effect": "InstantHeal",
+            "on_reveal_effect": "Blindness",
             "on_reveal_effect_attrs": {
-                "heal_amount": 4
+                "duration": 4
             },
             "on_reveal_effect_target": "player",
             "on_blackjack_effect": null,
@@ -59,9 +59,9 @@
                 0,
                 0
             ],
-            "on_reveal_effect": "InstantHeal",
+            "on_reveal_effect": "Blindness",
             "on_reveal_effect_attrs": {
-                "heal_amount": 5
+                "duration": 5
             },
             "on_reveal_effect_target": "player",
             "on_blackjack_effect": null,
@@ -76,9 +76,9 @@
                 0,
                 0
             ],
-            "on_reveal_effect": "InstantHeal",
+            "on_reveal_effect": "Blindness",
             "on_reveal_effect_attrs": {
-                "heal_amount": 6
+                "duration": 6
             },
             "on_reveal_effect_target": "player",
             "on_blackjack_effect": null,

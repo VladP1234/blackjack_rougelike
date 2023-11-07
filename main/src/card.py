@@ -1,7 +1,7 @@
 import pygame
 from typing import Dict, List
-from status_effect import InstantHeal
 import json
+from status_effect import InstantHeal, InstantArmour, Regen, Vulnerable, Blindness
 
 class Effect:
     def __init__(self, effect_type, params, target) -> None:
@@ -47,7 +47,6 @@ class Card:
     @staticmethod
     def deserialize(card_data):
         # Import the status effects
-        from status_effect import InstantHeal, Regen
 
         # Reconstruct the effects based on the stored data
         on_reveal_effect = None

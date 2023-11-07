@@ -6,7 +6,7 @@ from collections import namedtuple
 from enum import Enum, auto
 from level import Combat, Merchant
 from utils import Text
-
+from typing import Dict
 Bleeding = namedtuple('BLEEDING', ['damage'])
 
 class CombatState(Enum):
@@ -50,6 +50,36 @@ class CombatManager:
         self.reward_ui.append(self.exit_combat_button)
         
         self.hide_ui()
+        
+        
+        self.icons: Dict[str, pygame.Surface] = self.load_icons()
+
+    def load_icons(self):
+        return {
+            "Bleeding": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BleedingIcon.png"), (64, 64)),
+            "Stun": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/StunIcon.png"), (64, 64)),
+            "Hex": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/HexIcon.png"), (64, 64)),
+            "Poison": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/PoisonIcon.png"), (64, 64)),
+            "Burn": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BurnIcon.png"), (64, 64)),
+            "Frostbite": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/FrostbiteIcon.png"), (64, 64)),
+            "Weakness": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/WeaknessIcon.png"), (64, 64)),
+            "Vulnerabile": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/VulnerableIcon.png"), (64, 64)),
+            "Silence": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SilenceIcon.png"), (64, 64)),
+            "Slow": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SlowIcon.png"), (64, 64)),
+            "Confusion": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/ConfusionIcon.png"), (64, 64)),
+            "Fear": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/FearIcon.png"), (64, 64)),
+            "Blindness": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BlindnessIcon.png"), (64, 64)),
+            "Strength": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/StrengthIcon.png"), (64, 64)),
+            "Rage": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/RageIcon.png"), (64, 64)),
+            "Armour": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/ArmourIcon.png"), (64, 64)),
+            "Temp HP": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/TempHPIcon.png"), (64, 64)),
+            "Speed": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SpeedIcon.png"), (64, 64)),
+            "Intangible": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/IntangibleIcon.png"), (64, 64)),
+            "Regen": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/RegenIcon.png"), (64, 64)),
+            "Buffer": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BufferIcon.png"), (64, 64)),
+            "Dexterity": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/DexterityIcon.png"), (64, 64)),
+        }
+
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -104,8 +134,8 @@ class CombatManager:
                 pass
 
     def draw(self, screen: pygame.Surface):
-        self.player.draw(screen)
-        self.enemy.draw(screen)
+        self.player.draw(screen, self.icons)
+        self.enemy.draw(screen, self.icons)
 
     def hide_ui(self):
         for ui in self.ui:

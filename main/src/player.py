@@ -2,6 +2,7 @@ from hand import Hand
 from deck import Deck, DefaultDecks
 from utils import make_text
 from status_effect import *
+from typing import Dict
 import pygame
 import pygame_gui
 
@@ -25,13 +26,36 @@ class Player:
         self.effect = None
 
         self.status_effects = []
-    def draw(self, screen: pygame.Surface):
+
+    def draw(self, screen: pygame.Surface, icon_dict):
         self.deck.draw(screen)
         self.hand.draw(screen)
+        self.display_hp(screen)
         screen.blit(make_text(f'{self.hp}', 20), self.hp_blit_pos)
+        self.display_effcts(screen, icon_dict)
 
-    def display_effcts(self, screen: pygame.Surface):
-        pass
+    def display_hp(self, screen: pygame.Surface):
+        BAR_WIDTH = 120
+        BAR_HEIGHT = 10
+        
+        # Calculate the width of the foreground health bar
+        health_ratio = self.hp / self.max_hp
+        foreground_width = BAR_WIDTH * health_ratio
+        
+        # Create the background rectangle (red)
+        background_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (BAR_WIDTH, BAR_HEIGHT))
+        pygame.draw.rect(screen, (255, 0, 0), background_rect)  # Red
+
+        # Create the foreground rectangle (green)
+        foreground_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (foreground_width, BAR_HEIGHT))
+        pygame.draw.rect(screen, (0, 255, 0), foreground_rect)  # Green
+
+    def display_effcts(self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]):
+        for counter, effect in enumerate(self.status_effects):
+            match type(effect):
+                case Blindness:
+                    screen.blit(icon_dict["Blindness"], (25, counter * 100 + 50))
+                    screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (75, counter * 100 + 90))
     
     def hit(self):
         top_card = self.deck.draw_card()
@@ -72,14 +96,17 @@ class Player:
         percent_modifier += 0.25 if self.stats.is_raging else 0
         percent_modifier -= 0.25 if self.stats.is_weak else 0
         percent_modifier *= 1.5 if enemy.stats.is_vulnerable else 1
-
+        if self.stats.is_blind:
+            percent_modifier = 0
         enemy.take_damage((damage_amount + flat_modifier)*percent_modifier)
 
     def take_damage(self, damage_amount):
-        self.block -= damage_amount
-        if self.block < 0:
-            self.hp += self.block
-            self.block = 0
+        damage_amount -= self.stats.armour
+        if damage_amount > 0:
+            self.block -= damage_amount
+            if self.block < 0:
+                self.hp += self.block
+                self.block = 0
 
     def gain_block(self, block_amount):
         self.block += block_amount + self.stats.dexterity
@@ -99,6 +126,8 @@ class Stats():
     def __init__(self) -> None:
         self.strength = 0
         self.dexterity = 0
+        self.armour = 0
+        self.is_blind = False
         self.is_weak = False
         self.is_vulnerable = False
         self.is_raging = False
