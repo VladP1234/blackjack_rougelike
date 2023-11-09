@@ -74,8 +74,6 @@ class Card:
         )
         return card
 
-
-
 class AltValueCard(Card):
     def __init__(self, value, image_path, alt_value, pos, name = None, on_reveal_effect = None, on_blackjack_effect = None) -> None:
         super().__init__(value, image_path, pos, name, on_reveal_effect, on_blackjack_effect)

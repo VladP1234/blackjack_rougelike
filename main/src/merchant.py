@@ -88,10 +88,10 @@ class MerchantManager:
         card_num = 0
         y_mod = 0
         x_mod = -200 
-        for card in sample(self.get_merchant_cards(floor), k=8):
+        for card in sample(self.get_merchant_cards(floor), k=6):
             card_num += 1
             x_mod += 200
-            if card_num == 7:
+            if card_num == 5:
                 x_mod = 0
                 y_mod += 250
             button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(25 + x_mod, 100 + y_mod, 150, 200), text=f"{card.name}", manager=UIManager, tool_tip_text=f"{randint(50, 200)} gold")

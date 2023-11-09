@@ -14,6 +14,7 @@ class Player:
         self.hp = 10
         self.max_hp = 20
         self.standing = False
+        self.is_enemy = is_enemy
 
         if not is_enemy:
             self.hud = Hud(UIManager)
@@ -51,11 +52,12 @@ class Player:
         pygame.draw.rect(screen, (0, 255, 0), foreground_rect)  # Green
 
     def display_effcts(self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]):
+        offset = 1 if self.is_enemy else -1
         for counter, effect in enumerate(self.status_effects):
             match type(effect):
                 case Blindness:
-                    screen.blit(icon_dict["Blindness"], (25, counter * 100 + 50))
-                    screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (75, counter * 100 + 90))
+                    screen.blit(icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50))
+                    screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (415 + 340 * offset, counter * 100 + 90))
     
     def hit(self):
         top_card = self.deck.draw_card()

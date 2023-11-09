@@ -17,7 +17,7 @@ class GameState(Enum):
 
 
 class Game:
-    def __init__(self, width=800, height=600, fps=60):
+    def __init__(self, width=900, height=600, fps=60):
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         self.gui_manager = pygame_gui.UIManager((width, height))

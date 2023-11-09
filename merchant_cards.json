@@ -46,7 +46,7 @@
             "on_reveal_effect_attrs": {
                 "duration": 4
             },
-            "on_reveal_effect_target": "player",
+            "on_reveal_effect_target": "enemy",
             "on_blackjack_effect": null,
             "on_blackjack_effect_attrs": null,
             "on_blackjack_effect_target": null
@@ -63,7 +63,7 @@
             "on_reveal_effect_attrs": {
                 "duration": 5
             },
-            "on_reveal_effect_target": "player",
+            "on_reveal_effect_target": "enemy",
             "on_blackjack_effect": null,
             "on_blackjack_effect_attrs": null,
             "on_blackjack_effect_target": null
@@ -80,7 +80,7 @@
             "on_reveal_effect_attrs": {
                 "duration": 6
             },
-            "on_reveal_effect_target": "player",
+            "on_reveal_effect_target": "enemy",
             "on_blackjack_effect": null,
             "on_blackjack_effect_attrs": null,
             "on_blackjack_effect_target": null
