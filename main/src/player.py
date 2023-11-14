@@ -60,10 +60,14 @@ class Player:
                     screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (415 + 340 * offset, counter * 100 + 90))
     
     def hit(self):
-        top_card = self.deck.draw_card()
-        if top_card.on_reveal_effect:
-            self.effect = top_card.on_reveal_effect
-        self.hand.cards.append(top_card)
+        if not self.standing:
+            top_card = self.deck.draw_card()
+            if top_card.on_reveal_effect:
+                self.effect = top_card.on_reveal_effect
+            self.hand.cards.append(top_card)
+            if self.stats.is_stunned:
+                if len(self.hand.cards) >= 2:
+                    self.stand()
     def stand(self):
         self.standing = True
     def reset(self):
@@ -76,12 +80,15 @@ class Player:
     # Status effect code
     def affect(self, effect: StatusEffect):
         self.status_effects.append(effect)
-        if effect.has_on_reveal_effect:
-            effect.on_reveal(self)
+        effect.on_reveal(self)
     
-    def resolve_status_effects(self):
+    def turn_end_status(self):
         for status in self.status_effects:
             status.on_turn_end(self)
+    
+    def turn_start_status(self):
+        for status in self.status_effects:
+            status.on_turn_start(self)
     
     def remove_effect(self, effect):
         for s_effect in self.status_effects:
@@ -94,6 +101,9 @@ class Player:
     def deal_damage(self, enemy, damage_amount):
         flat_modifier = 0
         flat_modifier += self.stats.strength
+        for effect in self.status_effects:
+            if isinstance(effect, Frostbite):
+                flat_modifier -= effect.damage
         percent_modifier =  1
         percent_modifier += 0.25 if self.stats.is_raging else 0
         percent_modifier -= 0.25 if self.stats.is_weak else 0
@@ -133,3 +143,4 @@ class Stats():
         self.is_weak = False
         self.is_vulnerable = False
         self.is_raging = False
+        self.is_stunned = False

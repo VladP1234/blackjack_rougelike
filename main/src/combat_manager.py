@@ -103,8 +103,8 @@ class CombatManager:
                 self.player.effect(self)
                 self.player.effect = None
             if self.player.standing and self.enemy.standing:
-                self.player.resolve_status_effects()
-                self.enemy.resolve_status_effects()
+                self.player.turn_end_status()
+                self.enemy.turn_end_status()
                 player_total = self.player.hand.calculate_total()
                 enemy_total = self.enemy.hand.calculate_total()
                 if player_total == 21:
@@ -126,6 +126,7 @@ class CombatManager:
                 self.enemy.standing = False
                 self.player.reset()
                 self.enemy.reset()
+
             if self.enemy.hp <= 0:
                 self.change_state(CombatState.REWARD)
                 self.player.deck.shuffle_deck()

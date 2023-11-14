@@ -1,0 +1,631 @@
+{
+    "Hearts": [
+        {
+            "value": 2,
+            "name": "2 of Hearts",
+            "image_path": "main/Sprites/Cards/2_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 2
+            }
+        },
+        {
+            "value": 3,
+            "name": "3 of Hearts",
+            "image_path": "main/Sprites/Cards/3_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 3
+            }
+        },
+        {
+            "value": 4,
+            "name": "4 of Hearts",
+            "image_path": "main/Sprites/Cards/4_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 4
+            }
+        },
+        {
+            "value": 5,
+            "name": "5 of Hearts",
+            "image_path": "main/Sprites/Cards/5_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 5
+            }
+        },
+        {
+            "value": 6,
+            "name": "6 of Hearts",
+            "image_path": "main/Sprites/Cards/6_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 6
+            }
+        },
+        {
+            "value": 7,
+            "name": "7 of Hearts",
+            "image_path": "main/Sprites/Cards/7_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 7
+            }
+        },
+        {
+            "value": 8,
+            "name": "8 of Hearts",
+            "image_path": "main/Sprites/Cards/8_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 8
+            }
+        },
+        {
+            "value": 9,
+            "name": "9 of Hearts",
+            "image_path": "main/Sprites/Cards/9_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 9
+            }
+        },
+        {
+            "value": 10,
+            "name": "10 of Hearts",
+            "image_path": "main/Sprites/Cards/10_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 10
+            }
+        }
+    ],
+    "Spades": [
+        {
+            "value": 2,
+            "name": "2 of Spades",
+            "image_path": "main/Sprites/Cards/2_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 2
+            }
+        },
+        {
+            "value": 3,
+            "name": "3 of Spades",
+            "image_path": "main/Sprites/Cards/3_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 3
+            }
+        },
+        {
+            "value": 4,
+            "name": "4 of Spades",
+            "image_path": "main/Sprites/Cards/4_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 4
+            }
+        },
+        {
+            "value": 5,
+            "name": "5 of Spades",
+            "image_path": "main/Sprites/Cards/5_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 5
+            }
+        },
+        {
+            "value": 6,
+            "name": "6 of Spades",
+            "image_path": "main/Sprites/Cards/6_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 6
+            }
+        },
+        {
+            "value": 7,
+            "name": "7 of Spades",
+            "image_path": "main/Sprites/Cards/7_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 7
+            }
+        },
+        {
+            "value": 8,
+            "name": "8 of Spades",
+            "image_path": "main/Sprites/Cards/8_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 8
+            }
+        },
+        {
+            "value": 9,
+            "name": "9 of Spades",
+            "image_path": "main/Sprites/Cards/9_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 9
+            }
+        },
+        {
+            "value": 10,
+            "name": "10 of Spades",
+            "image_path": "main/Sprites/Cards/10_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 10
+            }
+        }
+    ],
+    "Clubs": [
+        {
+            "value": 2,
+            "name": "2 of Clubs",
+            "image_path": "main/Sprites/Cards/2_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -2
+            }
+        },
+        {
+            "value": 3,
+            "name": "3 of Clubs",
+            "image_path": "main/Sprites/Cards/3_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -3
+            }
+        },
+        {
+            "value": 4,
+            "name": "4 of Clubs",
+            "image_path": "main/Sprites/Cards/4_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -4
+            }
+        },
+        {
+            "value": 5,
+            "name": "5 of Clubs",
+            "image_path": "main/Sprites/Cards/5_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -5
+            }
+        },
+        {
+            "value": 6,
+            "name": "6 of Clubs",
+            "image_path": "main/Sprites/Cards/6_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -6
+            }
+        },
+        {
+            "value": 7,
+            "name": "7 of Clubs",
+            "image_path": "main/Sprites/Cards/7_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -7
+            }
+        },
+        {
+            "value": 8,
+            "name": "8 of Clubs",
+            "image_path": "main/Sprites/Cards/8_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -8
+            }
+        },
+        {
+            "value": 9,
+            "name": "9 of Clubs",
+            "image_path": "main/Sprites/Cards/9_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -9
+            }
+        },
+        {
+            "value": 10,
+            "name": "10 of Clubs",
+            "image_path": "main/Sprites/Cards/10_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -10
+            }
+        }
+    ],
+    "Diamonds": [
+        {
+            "value": 2,
+            "name": "2 of Diamonds",
+            "image_path": "main/Sprites/Cards/2_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 2,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 3,
+            "name": "3 of Diamonds",
+            "image_path": "main/Sprites/Cards/3_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 3,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 4,
+            "name": "4 of Diamonds",
+            "image_path": "main/Sprites/Cards/4_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 4,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 5,
+            "name": "5 of Diamonds",
+            "image_path": "main/Sprites/Cards/5_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 5,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 6,
+            "name": "6 of Diamonds",
+            "image_path": "main/Sprites/Cards/6_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 6,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 7,
+            "name": "7 of Diamonds",
+            "image_path": "main/Sprites/Cards/7_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 7,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 8,
+            "name": "8 of Diamonds",
+            "image_path": "main/Sprites/Cards/8_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 8,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 9,
+            "name": "9 of Diamonds",
+            "image_path": "main/Sprites/Cards/9_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 9,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 10,
+            "name": "10 of Diamonds",
+            "image_path": "main/Sprites/Cards/10_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage_per_turn": 1
+            }
+        }
+    ]
+}
