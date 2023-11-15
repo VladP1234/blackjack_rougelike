@@ -7,6 +7,7 @@ from enum import Enum, auto
 from level import Combat, Merchant
 from utils import Text
 from typing import Dict
+from time import sleep
 Bleeding = namedtuple('BLEEDING', ['damage'])
 
 class CombatState(Enum):
@@ -21,9 +22,9 @@ class CombatManager:
         
         # Change this later to an import from a .json
         self.hit_button = pygame_gui.elements.UIButton(pygame.Rect((100, 400), (50, 50)), text="hit", manager=UIManager)
-        self.e_hit_button = pygame_gui.elements.UIButton(pygame.Rect((650, 400), (50, 50)), text="hit", manager=UIManager)
+        # self.e_hit_button = pygame_gui.elements.UIButton(pygame.Rect((650, 400), (50, 50)), text="hit", manager=UIManager)
         self.stand_button = pygame_gui.elements.UIButton(pygame.Rect((100, 500), (50, 50)), text="stand", manager=UIManager)
-        self.e_stand_button = pygame_gui.elements.UIButton(pygame.Rect((650, 500), (50, 50)), text="stand", manager=UIManager)
+        # self.e_stand_button = pygame_gui.elements.UIButton(pygame.Rect((650, 500), (50, 50)), text="stand", manager=UIManager)
         
         self.rewards_text = pygame_gui.elements.UITextBox(f"REWARDS!", pygame.Rect(300, 50, 200, 50), UIManager)
         self.gold_button = pygame_gui.elements.UIButton(pygame.Rect((350, 200), (100, 50)), text="50 gold", manager=UIManager)
@@ -31,18 +32,18 @@ class CombatManager:
 
         self.ui = []
         self.ui.append(self.hit_button)
-        self.ui.append(self.e_hit_button)
+        # self.ui.append(self.e_hit_button)
         self.ui.append(self.stand_button)
-        self.ui.append(self.e_stand_button)
+        # self.ui.append(self.e_stand_button)
         self.ui.append(self.rewards_text)
         self.ui.append(self.gold_button)
         self.ui.append(self.exit_combat_button)
         
         self.combat_ui = []
         self.combat_ui.append(self.hit_button)
-        self.combat_ui.append(self.e_hit_button)
+        # self.combat_ui.append(self.e_hit_button)
         self.combat_ui.append(self.stand_button)
-        self.combat_ui.append(self.e_stand_button)
+        # self.combat_ui.append(self.e_stand_button)
         
         self.reward_ui = []
         self.reward_ui.append(self.rewards_text)
@@ -86,12 +87,12 @@ class CombatManager:
             if event.type == pygame_gui.UI_BUTTON_PRESSED:
                 if event.ui_element == self.hit_button:
                     self.player.hit()
-                elif event.ui_element == self.e_hit_button:
-                    self.enemy.hit()
+                # elif event.ui_element == self.e_hit_button:
+                #     self.enemy.hit()
                 elif event.ui_element == self.stand_button:
                     self.player.stand()
-                elif event.ui_element == self.e_stand_button:
-                    self.enemy.stand()
+                # elif event.ui_element == self.e_stand_button:
+                #     self.enemy.stand()
                 elif event.ui_element == self.gold_button:
                     self.player.gain_gold(self.reward.gold)
                     self.gold_button.hide()
@@ -102,6 +103,10 @@ class CombatManager:
             if self.player.effect:
                 self.player.effect(self)
                 self.player.effect = None
+            if self.player.standing and not self.enemy.standing:
+                self.enemy.hit() if self.enemy.ai.s_hit(self.enemy.hand) else self.enemy.stand()
+                if self.enemy.standing:
+                    sleep(0.5)
             if self.player.standing and self.enemy.standing:
                 self.player.turn_end_status()
                 self.enemy.turn_end_status()

@@ -1,4 +1,5 @@
 from hand import Hand
+from enemy_ai import EnemyAI, BasicAI
 from deck import Deck, DefaultDecks
 from utils import make_text
 from status_effect import *
@@ -6,8 +7,42 @@ from typing import Dict
 import pygame
 import pygame_gui
 
+class Stats:
+    def __init__(self) -> None:
+        self.strength = 0
+        self.dexterity = 0
+        self.armour = 0
+        self.is_blind = False
+        self.is_weak = False
+        self.is_vulnerable = False
+        self.is_raging = False
+        self.is_stunned = False
+    def to_dict(self) -> Dict:
+        return {
+            "strength": self.strength,
+            "dexterity": self.dexterity,
+            "armour": self.armour,
+            "is_blind": self.is_blind,
+            "is_weak": self.is_weak,
+            "is_vulnerable": self.is_vulnerable,
+            "is_raging": self.is_raging,
+            "is_stunned": self.is_stunned
+        }
+    @classmethod
+    def from_dict(cls, attributes_dict):
+        return cls(
+            strength=attributes_dict["strength"],
+            dexterity=attributes_dict["dexterity"],
+            armour=attributes_dict["armour"],
+            is_blind=attributes_dict["is_blind"],
+            is_weak=attributes_dict["is_weak"],
+            is_vulnerable=attributes_dict["is_vulnerable"],
+            is_raging=attributes_dict["is_raging"],
+            is_stunned=attributes_dict["is_stunned"]
+        )
+
 class Player:
-    def __init__(self, deck: Deck, is_enemy: bool = False, UIManager = False) -> None:
+    def __init__(self, deck: Deck, is_enemy: bool = False, UIManager = None, enemy_ai: EnemyAI| None = None, stats: Stats = Stats()) -> None:
         self.hand = Hand(is_enemy)
         self.deck = deck
         self.hp_blit_pos = (deck.pos[0], deck.pos[1]-100)
@@ -20,13 +55,38 @@ class Player:
             self.hud = Hud(UIManager)
             self.gold = 0
             self.gain_gold(10000)
+        else:
+            self.ai = enemy_ai
         
-        self.stats = Stats()
+        self.stats = stats
+
         self.block = 0
         
         self.effect = None
 
         self.status_effects = []
+
+    def to_dict(self) -> Dict:
+        return {
+            "is_enemy": self.is_enemy,
+            "deck": self.deck.to_dict(),
+            "hp": self.hp,
+            "max_hp": self.max_hp,
+            "ai": type(self.ai).__name__,
+            "stats": self.stats.to_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, data, UIManager):
+        return_class = cls(
+            Deck.from_dict(data["deck"]),
+            is_enemy = data["is_enemy"],
+            UIManager = UIManager,
+            enemy_ai = globals()[data["ai"]]()
+        )
+        return_class.hp = data["hp"]
+        return_class.max_hp = data["max_hp"]
+        return return_class
 
     def draw(self, screen: pygame.Surface, icon_dict):
         self.deck.draw(screen)
@@ -54,11 +114,9 @@ class Player:
     def display_effcts(self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]):
         offset = 1 if self.is_enemy else -1
         for counter, effect in enumerate(self.status_effects):
-            match type(effect):
-                case Blindness:
-                    screen.blit(icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50))
-                    screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (415 + 340 * offset, counter * 100 + 90))
-    
+            if isinstance(effect, Blindness):
+                screen.blit(icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50))
+                screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (415 + 340 * offset, counter * 100 + 90))
     def hit(self):
         if not self.standing:
             top_card = self.deck.draw_card()
@@ -133,14 +191,3 @@ class Hud:
     def update_gold(self, total_gold: int | float):
         self.gold.html_text = f"{total_gold} gold"
         self.gold.rebuild()
-
-class Stats():
-    def __init__(self) -> None:
-        self.strength = 0
-        self.dexterity = 0
-        self.armour = 0
-        self.is_blind = False
-        self.is_weak = False
-        self.is_vulnerable = False
-        self.is_raging = False
-        self.is_stunned = False

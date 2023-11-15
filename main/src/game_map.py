@@ -1,7 +1,8 @@
 from utils import make_text
 from deck import Deck
-from level import floors, Combat, Merchant
+from level import Combat, Merchant
 from typing import Dict
+from serialise import json_to_dict
 import pygame
 import pygame_gui
 
@@ -20,6 +21,7 @@ class GameMap:
             2: make_text("Floor 2", 54),
             3: make_text("Floor 3", 54) 
         }
+        self.UIManager = UIManager
         
         # self.combat1_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((100, 200), (190, 190)), text="", manager=UIManager)
         # self.ui.append(self.combat1_button)
@@ -27,7 +29,10 @@ class GameMap:
         self.hide_ui()
 
     def load_floor(self, floor_num: int, UIManager) -> Dict[str, Combat|Merchant]:
+        floors = json_to_dict("floors.json", UIManager)
+        # print(floors)
         floor: Dict[str, Combat | Merchant] = floors[str(floor_num)]
+        self.buttons = {}
         for level_id, level in floor.items():
             y_mod = 0
             if level_id.isdigit():
@@ -82,6 +87,10 @@ class GameMap:
             button.visible = True
     def go_to_next_level(self):
         self.current_level_num += 1
+        if self.current_level_num == 8:
+            self.current_level_num = 0
+            self.floor_num += 1
+            self.current_floor = self.load_floor(self.floor_num, self.UIManager)
         for button in self.buttons:
             if button.text[0] == str(self.current_level_num):
                 button.enable()

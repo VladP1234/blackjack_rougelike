@@ -18,7 +18,10 @@ class Card:
         self.image = pygame.transform.scale(self.image, (255/2, 381/2))
         self.pos = pos
         self.on_reveal_effect_serialise = on_reveal_effect
-        self.on_reveal_effect = lambda cm: effect_on_reveal(cm, on_reveal_effect.effect_type(**on_reveal_effect.params), on_reveal_effect.target) if on_reveal_effect else None
+        if on_reveal_effect:
+            self.on_reveal_effect = lambda cm: effect_on_reveal(cm, on_reveal_effect.effect_type(**on_reveal_effect.params), on_reveal_effect.target) if on_reveal_effect else None
+        else:
+            self.on_reveal_effect = None
         self.on_blackjack_effect_serialise = on_blackjack_effect
         # TODO: Ask howse why the original didn't work
         # self.on_blackjack_effect = lambda cm: effect_on_reveal(cm, on_blackjack_effect.effect_type(**on_blackjack_effect.params), on_blackjack_effect.target) if on_blackjack_effect else None
@@ -78,6 +81,11 @@ class AltValueCard(Card):
     def __init__(self, value, image_path, alt_value, pos, name = None, on_reveal_effect = None, on_blackjack_effect = None) -> None:
         super().__init__(value, image_path, pos, name, on_reveal_effect, on_blackjack_effect)
         self.alt_value = alt_value
+
+    def serialize(self):
+        return_dict = super().serialize()
+        return_dict["alt_value"] = self.alt_value
+        return return_dict
 
 def heart_on_reveal(combat_manager, heal_amount):
     combat_manager.player.hp += heal_amount

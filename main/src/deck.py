@@ -61,6 +61,22 @@ class Deck:
         while len(self.discard_pile) > 0:
             self.cards.append(self.discard_pile.pop())
         shuffle(self.cards)
+    def to_dict(self) -> Dict:
+        return {
+            "position": self.pos,
+            "modifier": self.modifier,
+            "cards": [card.serialize() for card in self.cards]
+        }
+    @classmethod
+    def from_dict(cls, data):
+        cards = []
+        for card in data["cards"]:
+            cards.append(Card.deserialize(card))
+        return cls(
+            data["position"],
+            data["modifier"],
+            cards
+        )
 
 # used GPT for this since I couldn't be bothered to build this QoL feature, hence the presense of comments
 # At least I found out about enumerate which would have come in handy any time I used temporary counters
