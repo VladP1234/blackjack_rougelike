@@ -152,6 +152,57 @@
             "on_blackjack_effect_attrs": {
                 "heal_amount": 10
             }
+        },
+        {
+            "value": 10,
+            "name": "Jack of Hearts",
+            "image_path": "main/Sprites/Cards/J_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 10
+            }
+        },
+        {
+            "value": 10,
+            "name": "Queen of Hearts",
+            "image_path": "main/Sprites/Cards/Q_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 10
+            }
+        },
+        {
+            "value": 10,
+            "name": "King of Hearts",
+            "image_path": "main/Sprites/Cards/K_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 10
+            }
         }
     ],
     "Spades": [
@@ -295,6 +346,57 @@
             "value": 10,
             "name": "10 of Spades",
             "image_path": "main/Sprites/Cards/10_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 10
+            }
+        },
+        {
+            "value": 10,
+            "name": "Jack of Spades",
+            "image_path": "main/Sprites/Cards/J_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 10
+            }
+        },
+        {
+            "value": 10,
+            "name": "Queen of Spades",
+            "image_path": "main/Sprites/Cards/Q_spade.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantTempHp",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "temp_hp_amount": 10
+            }
+        },
+        {
+            "value": 10,
+            "name": "King of Spades",
+            "image_path": "main/Sprites/Cards/K_spade.png",
             "pos": [
                 0,
                 0
@@ -462,6 +564,57 @@
             "on_blackjack_effect_attrs": {
                 "heal_amount": -10
             }
+        },
+        {
+            "value": 10,
+            "name": "Jack of Clubs",
+            "image_path": "main/Sprites/Cards/J_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -10
+            }
+        },
+        {
+            "value": 10,
+            "name": "Queen of Clubs",
+            "image_path": "main/Sprites/Cards/Q_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -10
+            }
+        },
+        {
+            "value": 10,
+            "name": "King of Clubs",
+            "image_path": "main/Sprites/Cards/K_clubs.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": -10
+            }
         }
     ],
     "Diamonds": [
@@ -613,6 +766,60 @@
             "value": 10,
             "name": "10 of Diamonds",
             "image_path": "main/Sprites/Cards/10_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 10,
+            "name": "Jack of Diamonds",
+            "image_path": "main/Sprites/Cards/J_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 10,
+            "name": "Queen of Diamonds",
+            "image_path": "main/Sprites/Cards/Q_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage_per_turn": 1
+            }
+        },
+        {
+            "value": 10,
+            "name": "King of Diamonds",
+            "image_path": "main/Sprites/Cards/K_diamonds.png",
             "pos": [
                 0,
                 0
