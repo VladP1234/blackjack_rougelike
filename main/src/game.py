@@ -59,6 +59,10 @@ class Game:
             if self.base.start_run:
                 self.change_state(GameState.MAP)
                 self.combat_manager.player.deck.cards = self.base.deck_selector.selected_deck
+                self.game_map.reset()
+                self.combat_manager.reset()
+                # self.combat_manager = CombatManager(self.gui_manager)
+                # self.merchant_manager = MerchantManager(self.gui_manager, self.combat_manager.player)
                 # print("changed state to map")
         elif self.state == GameState.MAP:
             self.game_map.update()
@@ -78,8 +82,11 @@ class Game:
             #     for effect in self.combat_manager.effects:
             #         effect(self)
             if self.combat_manager.leave_combat:
-                self.game_map.go_to_next_level()
-                self.change_state(GameState.MAP)
+                if self.combat_manager.player.hp <= 0:
+                    self.change_state(GameState.BASE)
+                else:
+                    self.game_map.go_to_next_level()
+                    self.change_state(GameState.MAP)
         elif self.state == GameState.MERCHANT:
             self.merchant_manager.update()
             if self.merchant_manager.leave_merchant:
@@ -88,8 +95,8 @@ class Game:
     
     def change_state(self, new_state: GameState):
         if new_state == GameState.BASE:
-            # reset all player data here
-            pass
+            self.base.show_ui()
+            self.combat_manager.hide_ui()
         elif new_state == GameState.MAP:
             self.base.hide_ui()
             self.combat_manager.hide_ui()

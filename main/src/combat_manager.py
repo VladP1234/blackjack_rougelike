@@ -51,10 +51,17 @@ class CombatManager:
         self.reward_ui.append(self.exit_combat_button)
         
         self.hide_ui()
-        
+        self.UIManager = UIManager
         
         self.icons: Dict[str, pygame.Surface] = self.load_icons()
 
+    def reset(self):
+        player_deck = self.player.deck.cards
+        self.player = Player(Deck((100, 200), False), UIManager=self.UIManager)
+        self.player.deck.cards = player_deck
+        self.leave_combat = False
+        self.state = CombatState.FIGHT
+        self.player.hp = 10000
     def load_icons(self):
         return {
             "Bleeding": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BleedingIcon.png"), (64, 64)),
@@ -104,9 +111,9 @@ class CombatManager:
                 self.player.effect(self)
                 self.player.effect = None
             if self.player.standing and not self.enemy.standing:
-                self.enemy.hit() if self.enemy.ai.s_hit(self.enemy.hand) else self.enemy.stand()
+                self.enemy.hit() if self.enemy.ai.s_hit(self.enemy.hand, self.enemy.deck) else self.enemy.stand()
                 if self.enemy.standing:
-                    sleep(0.5)
+                    sleep(0.8)
             if self.player.standing and self.enemy.standing:
                 self.player.turn_end_status()
                 self.enemy.turn_end_status()
@@ -136,7 +143,7 @@ class CombatManager:
                 self.change_state(CombatState.REWARD)
                 self.player.deck.shuffle_deck()
             if self.player.hp <= 0:
-                # End of game code
+                self.leave_combat = True
                 pass
 
     def draw(self, screen: pygame.Surface):
@@ -177,6 +184,8 @@ class CombatManager:
         self.state = new_state
 
     def enter_combat(self, level: Combat):
+        for card in self.player.deck.cards:
+            card.pos = (250, 200)
         self.leave_combat = False
         self.player.deck.shuffle_deck()
         self.enemy = level.enemy

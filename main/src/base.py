@@ -45,6 +45,7 @@ class DeckSelector:
             if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                 if event.ui_element == button:
                     self.selected_deck = self.decks[deck_type]
+                    self.hide_ui()
                     break
     def update(self):
         pass
@@ -87,6 +88,10 @@ class Base:
         for ui in self.ui:
             ui.visible = False
     def show_ui(self):
+        self.start_run = False
+        self.selecting_decks = False
+        self.selecting_decks = False
+        self.deck_selector.selected_deck = None
         for ui in self.ui:
             ui.visible = True
 

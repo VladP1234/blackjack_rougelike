@@ -28,11 +28,21 @@ class GameMap:
         
         self.hide_ui()
 
+    def reset(self):
+        self.floor_num = 1
+        self.go_to_combat = False
+        self.go_to_merchant = False
+        self.current_floor = self.load_floor(self.floor_num, self.UIManager)
+        self.current_level = self.buttons[list(self.buttons.keys())[0]]
+
     def load_floor(self, floor_num: int, UIManager) -> Dict[str, Combat|Merchant]:
         floors = json_to_dict("floors.json", UIManager)
         # print(floors)
         floor: Dict[str, Combat | Merchant] = floors[str(floor_num)]
+        for button in self.buttons:
+            button.kill()
         self.buttons = {}
+
         for level_id, level in floor.items():
             y_mod = 0
             if level_id.isdigit():
