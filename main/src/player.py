@@ -1,5 +1,5 @@
 from hand import Hand
-from enemy_ai import EnemyAI, BasicAI
+from enemy_ai import EnemyAI, BasicAI, CheatAI
 from deck import Deck, DefaultDecks
 from utils import make_text
 from status_effect import *
