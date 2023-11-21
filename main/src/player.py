@@ -12,6 +12,7 @@ class Stats:
         self.strength = 0
         self.dexterity = 0
         self.armour = 0
+        self.temp_hp = 0
         self.is_blind = False
         self.is_weak = False
         self.is_vulnerable = False
@@ -22,11 +23,12 @@ class Stats:
             "strength": self.strength,
             "dexterity": self.dexterity,
             "armour": self.armour,
+            "temp_hp": self.temp_hp,
             "is_blind": self.is_blind,
             "is_weak": self.is_weak,
             "is_vulnerable": self.is_vulnerable,
             "is_raging": self.is_raging,
-            "is_stunned": self.is_stunned
+            "is_stunned": self.is_stunned,
         }
     @classmethod
     def from_dict(cls, attributes_dict):
@@ -34,6 +36,7 @@ class Stats:
             strength=attributes_dict["strength"],
             dexterity=attributes_dict["dexterity"],
             armour=attributes_dict["armour"],
+            temp_hp=attributes_dict["temp_hp"],
             is_blind=attributes_dict["is_blind"],
             is_weak=attributes_dict["is_weak"],
             is_vulnerable=attributes_dict["is_vulnerable"],
@@ -175,8 +178,11 @@ class Player:
         if damage_amount > 0:
             self.block -= damage_amount
             if self.block < 0:
-                self.hp += self.block
+                self.stats.temp_hp += self.block
                 self.block = 0
+                if self.stats.temp_hp < 0:
+                    self.hp += self.stats.temp_hp
+                    self.stats.temp_hp = 0
 
     def gain_block(self, block_amount):
         self.block += block_amount + self.stats.dexterity

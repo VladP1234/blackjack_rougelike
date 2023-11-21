@@ -106,6 +106,12 @@ class InstantHeal(StatusEffect):
         else:
             player.take_damage(self.heal_amount)
 
+class InstantTempHp(StatusEffect):
+    def __init__(self, hp_amount) -> None:
+        self.hp_amount = hp_amount
+    def on_reveal(self, player):
+        player.stats.temp_hp += self.hp_amount
+
 class Regen(StatusEffect):
     def __init__(self, heal_amount) -> None:
         self.damage = heal_amount

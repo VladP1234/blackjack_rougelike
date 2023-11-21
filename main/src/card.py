@@ -1,7 +1,7 @@
 import pygame
 from typing import Dict, List
 import json
-from status_effect import InstantHeal, InstantArmour, Regen, Vulnerable, Blindness
+from status_effect import *
 
 class Effect:
     def __init__(self, effect_type, params, target) -> None:

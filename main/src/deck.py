@@ -87,6 +87,8 @@ def display_cards(screen, cards: List[Card|AltValueCard]):
     horizontal_spacing, vertical_spacing = 200, 250
     cards_per_row = 4
 
+    for card in cards:
+        card.pos = (0, 0)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -103,7 +105,7 @@ def display_cards(screen, cards: List[Card|AltValueCard]):
         for i, card in enumerate(cards):
             row = i // cards_per_row
             col = i % cards_per_row
-            x = col * horizontal_spacing - 200
+            x = col * horizontal_spacing + 75
             y = row * vertical_spacing - y_scroll_offset
             card.draw(screen, x, -y)
 

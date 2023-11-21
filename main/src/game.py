@@ -58,6 +58,7 @@ class Game:
             self.base.update()
             if self.base.start_run:
                 self.change_state(GameState.MAP)
+                self.combat_manager.player.deck.cards = self.base.deck_selector.selected_deck
                 # print("changed state to map")
         elif self.state == GameState.MAP:
             self.game_map.update()
