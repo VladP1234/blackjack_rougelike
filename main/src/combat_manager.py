@@ -62,6 +62,7 @@ class CombatManager:
         self.leave_combat = False
         self.state = CombatState.FIGHT
         self.player.hp = 10000
+    # I know that this is bad code, but there is no real point to cleaning this up
     def load_icons(self):
         return {
             "Bleeding": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BleedingIcon.png"), (64, 64)),
@@ -111,6 +112,7 @@ class CombatManager:
                 self.player.effect(self)
                 self.player.effect = None
             if self.player.standing and not self.enemy.standing:
+                sleep(0.2)
                 self.enemy.hit() if self.enemy.ai.s_hit(self.enemy.hand, self.enemy.deck) else self.enemy.stand()
                 if self.enemy.standing:
                     sleep(0.8)
@@ -120,9 +122,9 @@ class CombatManager:
                 player_total = self.player.hand.calculate_total()
                 enemy_total = self.enemy.hand.calculate_total()
                 if player_total == 21:
-                    for card in self.player.hand.cards:
-                        if card.on_blackjack_effect:
-                            self.effects.append(card.on_blackjack_effect)
+                    card = self.player.hand.cards[-1]
+                    if card.on_blackjack_effect:
+                            card.on_blackjack_effect(self)
                 if player_total > enemy_total:
                     if player_total <= 21:
                         self.player.deal_damage(self.enemy, player_total - enemy_total)

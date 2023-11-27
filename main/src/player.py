@@ -45,7 +45,7 @@ class Stats:
         )
 
 class Player:
-    def __init__(self, deck: Deck, is_enemy: bool = False, UIManager = None, enemy_ai: EnemyAI| None = None, stats: Stats = Stats()) -> None:
+    def __init__(self, deck: Deck, is_enemy: bool = False, UIManager = None, enemy_ai: EnemyAI| None = None, stats: Stats = None) -> None:
         self.hand = Hand(is_enemy)
         self.deck = deck
         self.hp_blit_pos = (deck.pos[0], deck.pos[1]-100)
@@ -61,7 +61,7 @@ class Player:
         else:
             self.ai = enemy_ai
         
-        self.stats = stats
+        self.stats = stats or Stats()
 
         self.block = 0
         
@@ -92,12 +92,15 @@ class Player:
         return return_class
 
     def draw(self, screen: pygame.Surface, icon_dict):
+        if self.hand.calculate_total() >= 21:
+            self.standing = True
         self.deck.draw(screen)
         self.hand.draw(screen)
         self.display_hp(screen)
         screen.blit(make_text(f'{self.hp}', 20), self.hp_blit_pos)
         self.display_effcts(screen, icon_dict)
 
+    # Used GPT for this, made a health bar a 100 times before, no need for me to make it 101 tiei
     def display_hp(self, screen: pygame.Surface):
         BAR_WIDTH = 120
         BAR_HEIGHT = 10
@@ -113,6 +116,11 @@ class Player:
         # Create the foreground rectangle (green)
         foreground_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (foreground_width, BAR_HEIGHT))
         pygame.draw.rect(screen, (0, 255, 0), foreground_rect)  # Green
+
+        temp_hp_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (BAR_WIDTH * self.stats.temp_hp/self.max_hp, BAR_HEIGHT))
+        pygame.draw.rect(screen, (255, 255, 0), temp_hp_rect)
+        if self.stats.temp_hp > 0:
+            screen.blit(make_text(str(self.stats.temp_hp), 28), (self.deck.pos[0], self.deck.pos[1] + 210))
 
     def display_effcts(self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]):
         offset = 1 if self.is_enemy else -1
