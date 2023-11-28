@@ -249,6 +249,7 @@ class CombatManager:
         elif new_state == CombatState.REWARD:
             self.show_reward_ui()
             self.hide_combat_ui()
+            self.player.stats.reset()
         self.state = new_state
 
     def enter_combat(self, level: Combat):

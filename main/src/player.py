@@ -20,6 +20,17 @@ class Stats:
         self.is_raging = False
         self.is_stunned = False
 
+    def reset(self):
+        self.strength = 0
+        self.dexterity = 0
+        self.armour = 0
+        self.temp_hp = 0
+        self.is_blind = False
+        self.is_weak = False
+        self.is_vulnerable = False
+        self.is_raging = False
+        self.is_stunned = False
+
     def to_dict(self) -> Dict:
         return {
             "strength": self.strength,

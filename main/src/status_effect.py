@@ -105,6 +105,7 @@ class Frostbite(StatusEffect):
 
 class InstantArmour(StatusEffect):
     def __init__(self, armour_amount) -> None:
+        super().__init__()
         self.armour_amount = armour_amount
 
     def on_reveal(self, player):
@@ -131,6 +132,7 @@ class Blindness(StatusEffect):
 
 class InstantHeal(StatusEffect):
     def __init__(self, heal_amount) -> None:
+        super().__init__()
         self.heal_amount = heal_amount
 
     def on_reveal(self, player):
@@ -142,6 +144,7 @@ class InstantHeal(StatusEffect):
 
 class InstantTempHp(StatusEffect):
     def __init__(self, temp_hp_amount) -> None:
+        super().__init__()
         self.temp_hp_amount = temp_hp_amount
 
     def on_reveal(self, player):
