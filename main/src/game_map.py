@@ -22,6 +22,7 @@ class GameMap:
             3: make_text("Floor 3", 54) 
         }
         self.UIManager = UIManager
+        self.help_message = make_text("Press \"D\" to view your deck", 26)
         
         # self.combat1_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((100, 200), (190, 190)), text="", manager=UIManager)
         # self.ui.append(self.combat1_button)
@@ -80,6 +81,7 @@ class GameMap:
 
     def draw(self, screen: pygame.Surface):
         screen.blit(self.floor_texts[self.floor_num], (350, 50))
+        screen.blit(self.help_message, (350, 500) )
     
     def update(self):
         pass

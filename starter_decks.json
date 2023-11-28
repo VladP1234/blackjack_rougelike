@@ -203,6 +203,24 @@
             "on_blackjack_effect_attrs": {
                 "heal_amount": 10
             }
+        },
+        {
+            "value": 11,
+            "alt_value": 1,
+            "name": "Ace of Hearts",
+            "image_path": "main/Sprites/Cards/A_hearts.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "InstantHeal",
+            "on_blackjack_effect_target": "player",
+            "on_blackjack_effect_attrs": {
+                "heal_amount": 11
+            }
         }
     ],
     "Spades": [
@@ -832,6 +850,84 @@
             "on_blackjack_effect_attrs": {
                 "duration": 10,
                 "damage_per_turn": 1
+            }
+        }
+    ],
+    "Alties": [
+        {
+            "value": 11,
+            "alt_value": 1,
+            "name": "Ace of Diamonds",
+            "image_path": "main/Sprites/Cards/K_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage": 1
+            }
+        },
+        {
+            "value": 5,
+            "alt_value": 1,
+            "name": "Ace of Diamonds",
+            "image_path": "main/Sprites/Cards/K_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage": 1
+            }
+        },
+        {
+            "value": 5,
+            "alt_value": 1,
+            "name": "Ace of Diamonds",
+            "image_path": "main/Sprites/Cards/K_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage": 1
+            }
+        },
+        {
+            "value": 5,
+            "alt_value": 1,
+            "name": "Ace of Diamonds",
+            "image_path": "main/Sprites/Cards/K_diamonds.png",
+            "pos": [
+                0,
+                0
+            ],
+            "on_reveal_effect": null,
+            "on_reveal_effect_attrs": null,
+            "on_reveal_effect_target": null,
+            "on_blackjack_effect": "Bleeding",
+            "on_blackjack_effect_target": "enemy",
+            "on_blackjack_effect_attrs": {
+                "duration": 10,
+                "damage": 1
             }
         }
     ]

@@ -1,5 +1,6 @@
 import pygame
 import pygame_gui
+from utils import make_text
 from card import Card, AltValueCard
 from json import load
 from deck import Deck
@@ -30,14 +31,25 @@ class DeckSelector:
     def __init__(self, UIManager: pygame_gui.UIManager) -> None:
         self.selected_deck: Deck | None = None
         with open("starter_decks.json") as f:
-            self.decks = {name : [Card.deserialize(card_data) for card_data in card_list] for name, card_list in load(f).items()}
+            self.decks = {}
+            for name, card_list in load(f).items():
+                deck = []
+                for card_data in card_list:
+                    card_type = Card
+                    if "alt_value" in card_data:
+                        card_type = AltValueCard
+                    deck.append(card_type.deserialize(card_data))
+                self.decks[name] = deck
+
+            # self.decks = {name : [Card.deserialize(card_data) for card_data in card_list] for name, card_list in load(f).items()}
         self.buttons = []
-        button_layout = {'Hearts': (50, 100), 'Clubs': (200, 100), 'Diamonds': (350, 100), 'Spades': (500, 100)}
+        button_layout = {'Hearts': (50, 100), 'Clubs': (200, 100), 'Diamonds': (350, 100), 'Spades': (500, 100), 'Alties': (650, 100)}
         for deck_type, position in button_layout.items():
             button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position, (100, 50)),
                                                   text=deck_type.capitalize(),
                                                   manager=UIManager)
             self.buttons.append((button, deck_type))
+        self.title_text = make_text("Pick a starting deck", 50)
         self.hide_ui()
 
     def handle_events(self, event):
@@ -50,7 +62,7 @@ class DeckSelector:
     def update(self):
         pass
     def draw(self, screen: pygame.Surface):
-        pass
+        screen.blit(self.title_text, (300, 50))
     def hide_ui(self):
         for button, _ in self.buttons:
             button.hide()

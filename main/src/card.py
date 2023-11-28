@@ -86,7 +86,33 @@ class AltValueCard(Card):
         return_dict = super().serialize()
         return_dict["alt_value"] = self.alt_value
         return return_dict
-
+    @staticmethod
+    def deserialize(card_data):
+        on_reveal_effect = None
+        if card_data.get('on_reveal_effect'):
+            effect_class = globals()[card_data['on_reveal_effect']]
+            effect_attrs = card_data['on_reveal_effect_attrs']
+            target = card_data['on_reveal_effect_target']
+            on_reveal_effect = Effect(effect_class, effect_attrs, target)
+        
+        on_blackjack_effect = None
+        if card_data.get('on_blackjack_effect'):
+            effect_class = globals()[card_data['on_blackjack_effect']]
+            effect_attrs = card_data['on_blackjack_effect_attrs']
+            target = card_data['on_blackjack_effect_target']
+            on_blackjack_effect = Effect(effect_class, effect_attrs, target)
+        
+        
+        card = AltValueCard(
+            card_data['value'],
+            card_data['image_path'],
+            card_data['alt_value'],
+            tuple(card_data['pos']),
+            card_data.get('name'),
+            on_reveal_effect=on_reveal_effect,
+            on_blackjack_effect=on_blackjack_effect
+        )
+        return card
 def heart_on_reveal(combat_manager, heal_amount):
     combat_manager.player.hp += heal_amount
 

@@ -61,7 +61,7 @@ class CombatManager:
         self.player.deck.cards = player_deck
         self.leave_combat = False
         self.state = CombatState.FIGHT
-        self.player.hp = 10000
+        self.player.hp = 20
     # I know that this is bad code, but there is no real point to cleaning this up
     def load_icons(self):
         return {

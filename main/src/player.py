@@ -7,6 +7,7 @@ from typing import Dict
 import pygame
 import pygame_gui
 
+
 class Stats:
     def __init__(self) -> None:
         self.strength = 0
@@ -18,6 +19,7 @@ class Stats:
         self.is_vulnerable = False
         self.is_raging = False
         self.is_stunned = False
+
     def to_dict(self) -> Dict:
         return {
             "strength": self.strength,
@@ -30,6 +32,7 @@ class Stats:
             "is_raging": self.is_raging,
             "is_stunned": self.is_stunned,
         }
+
     @classmethod
     def from_dict(cls, attributes_dict):
         return cls(
@@ -41,14 +44,22 @@ class Stats:
             is_weak=attributes_dict["is_weak"],
             is_vulnerable=attributes_dict["is_vulnerable"],
             is_raging=attributes_dict["is_raging"],
-            is_stunned=attributes_dict["is_stunned"]
+            is_stunned=attributes_dict["is_stunned"],
         )
 
+
 class Player:
-    def __init__(self, deck: Deck, is_enemy: bool = False, UIManager = None, enemy_ai: EnemyAI| None = None, stats: Stats = None) -> None:
+    def __init__(
+        self,
+        deck: Deck,
+        is_enemy: bool = False,
+        UIManager=None,
+        enemy_ai: EnemyAI | None = None,
+        stats: Stats = None,
+    ) -> None:
         self.hand = Hand(is_enemy)
         self.deck = deck
-        self.hp_blit_pos = (deck.pos[0], deck.pos[1]-100)
+        self.hp_blit_pos = (deck.pos[0], deck.pos[1] - 100)
         self.hp = 10
         self.max_hp = 20
         self.standing = False
@@ -57,14 +68,13 @@ class Player:
         if not is_enemy:
             self.hud = Hud(UIManager)
             self.gold = 0
-            self.gain_gold(10000)
         else:
             self.ai = enemy_ai
-        
+
         self.stats = stats or Stats()
 
         self.block = 0
-        
+
         self.effect = None
 
         self.status_effects = []
@@ -83,9 +93,9 @@ class Player:
     def from_dict(cls, data, UIManager):
         return_class = cls(
             Deck.from_dict(data["deck"]),
-            is_enemy = data["is_enemy"],
-            UIManager = UIManager,
-            enemy_ai = globals()[data["ai"]]()
+            is_enemy=data["is_enemy"],
+            UIManager=UIManager,
+            enemy_ai=globals()[data["ai"]](),
         )
         return_class.hp = data["hp"]
         return_class.max_hp = data["max_hp"]
@@ -97,37 +107,55 @@ class Player:
         self.deck.draw(screen)
         self.hand.draw(screen)
         self.display_hp(screen)
-        screen.blit(make_text(f'{self.hp}', 20), self.hp_blit_pos)
+        screen.blit(make_text(f"{self.hp}", 20), self.hp_blit_pos)
         self.display_effcts(screen, icon_dict)
 
     # Used GPT for this, made a health bar a 100 times before, no need for me to make it 101 tiei
     def display_hp(self, screen: pygame.Surface):
         BAR_WIDTH = 120
         BAR_HEIGHT = 10
-        
+
         # Calculate the width of the foreground health bar
         health_ratio = self.hp / self.max_hp
         foreground_width = BAR_WIDTH * health_ratio
-        
+
         # Create the background rectangle (red)
-        background_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (BAR_WIDTH, BAR_HEIGHT))
+        background_rect = pygame.Rect(
+            (self.deck.pos[0], self.deck.pos[1] + 190), (BAR_WIDTH, BAR_HEIGHT)
+        )
         pygame.draw.rect(screen, (255, 0, 0), background_rect)  # Red
 
         # Create the foreground rectangle (green)
-        foreground_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (foreground_width, BAR_HEIGHT))
+        foreground_rect = pygame.Rect(
+            (self.deck.pos[0], self.deck.pos[1] + 190), (foreground_width, BAR_HEIGHT)
+        )
         pygame.draw.rect(screen, (0, 255, 0), foreground_rect)  # Green
 
-        temp_hp_rect = pygame.Rect((self.deck.pos[0], self.deck.pos[1] + 190), (BAR_WIDTH * self.stats.temp_hp/self.max_hp, BAR_HEIGHT))
+        temp_hp_rect = pygame.Rect(
+            (self.deck.pos[0], self.deck.pos[1] + 190),
+            (BAR_WIDTH * self.stats.temp_hp / self.max_hp, BAR_HEIGHT),
+        )
         pygame.draw.rect(screen, (255, 255, 0), temp_hp_rect)
         if self.stats.temp_hp > 0:
-            screen.blit(make_text(str(self.stats.temp_hp), 28), (self.deck.pos[0], self.deck.pos[1] + 210))
+            screen.blit(
+                make_text(str(self.stats.temp_hp), 28),
+                (self.deck.pos[0], self.deck.pos[1] + 210),
+            )
 
-    def display_effcts(self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]):
+    def display_effcts(
+        self, screen: pygame.Surface, icon_dict: Dict[str, pygame.Surface]
+    ):
         offset = 1 if self.is_enemy else -1
         for counter, effect in enumerate(self.status_effects):
             if isinstance(effect, Blindness):
-                screen.blit(icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50))
-                screen.blit(make_text(str(effect.duration), 40, color=(200, 0, 0)), (415 + 340 * offset, counter * 100 + 90))
+                screen.blit(
+                    icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50)
+                )
+                screen.blit(
+                    make_text(str(effect.duration), 40, color=(200, 0, 0)),
+                    (415 + 340 * offset, counter * 100 + 90),
+                )
+
     def hit(self):
         if not self.standing:
             top_card = self.deck.draw_card()
@@ -137,28 +165,31 @@ class Player:
             if self.stats.is_stunned:
                 if len(self.hand.cards) >= 2:
                     self.stand()
+
     def stand(self):
         self.standing = True
+
     def reset(self):
         # while len(self.hand.cards) > 0:
         self.hand.cards = []
+
     def gain_gold(self, gold: int | float):
         self.gold += gold
         self.hud.update_gold(self.gold)
-    
+
     # Status effect code
     def affect(self, effect: StatusEffect):
         self.status_effects.append(effect)
         effect.on_reveal(self)
-    
+
     def turn_end_status(self):
         for status in self.status_effects:
             status.on_turn_end(self)
-    
+
     def turn_start_status(self):
         for status in self.status_effects:
             status.on_turn_start(self)
-    
+
     def remove_effect(self, effect):
         for s_effect in self.status_effects:
             if s_effect == effect:
@@ -173,13 +204,13 @@ class Player:
         for effect in self.status_effects:
             if isinstance(effect, Frostbite):
                 flat_modifier -= effect.damage
-        percent_modifier =  1
+        percent_modifier = 1
         percent_modifier += 0.25 if self.stats.is_raging else 0
         percent_modifier -= 0.25 if self.stats.is_weak else 0
         percent_modifier *= 1.5 if enemy.stats.is_vulnerable else 1
         if self.stats.is_blind:
             percent_modifier = 0
-        enemy.take_damage((damage_amount + flat_modifier)*percent_modifier)
+        enemy.take_damage((damage_amount + flat_modifier) * percent_modifier)
 
     def take_damage(self, damage_amount):
         damage_amount -= self.stats.armour
@@ -195,13 +226,13 @@ class Player:
     def gain_block(self, block_amount):
         self.block += block_amount + self.stats.dexterity
 
-class Hud: 
+
+class Hud:
     def __init__(self, UIManager) -> None:
         self.gold = pygame_gui.elements.UITextBox(
-            "0 gold", 
-            pygame.Rect(600, 25, 100, 50),
-            UIManager
+            "0 gold", pygame.Rect(700, 25, 100, 50), UIManager
         )
+
     def update_gold(self, total_gold: int | float):
         self.gold.html_text = f"{total_gold} gold"
         self.gold.rebuild()
