@@ -5,12 +5,19 @@ import pygame
 from json import load
 from random import shuffle
 
+
 class DefaultDecks(Enum):
     Base = auto()
     Sample1 = auto()
 
+
 class Deck:
-    def __init__(self, pos: (int, int), is_enemy, cards: List[Card|AltValueCard]|DefaultDecks = DefaultDecks.Sample1) -> None:
+    def __init__(
+        self,
+        pos: (int, int),
+        is_enemy,
+        cards: List[Card | AltValueCard] | DefaultDecks = DefaultDecks.Sample1,
+    ) -> None:
         if is_enemy:
             self.modifier = -1
         else:
@@ -21,66 +28,131 @@ class Deck:
             match cards:
                 case DefaultDecks.Base:
                     self.cards = [
-                        AltValueCard(11, 'main/Sprites/Card_Back.png', 1, (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1])),
-                        Card(2, 'main/Sprites/Cards/2_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(3, 'main/Sprites/Cards/3_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(4, 'main/Sprites/Cards/4_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(5, 'main/Sprites/Cards/5_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(6, 'main/Sprites/Cards/6_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(7, 'main/Sprites/Cards/7_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(8, 'main/Sprites/Cards/8_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(9, 'main/Sprites/Cards/9_hearts.png',  (pos[0] + self.modifier * 150, pos[1])),
-                        Card(10, 'main/Sprites/Cards/10_hearts.png', (pos[0] + self.modifier * 150, pos[1])),
-                        Card(10, 'main/Sprites/Cards/10_hearts.png', (pos[0] + self.modifier * 150, pos[1])),
-                        Card(10, 'main/Sprites/Cards/10_hearts.png', (pos[0] + self.modifier * 150, pos[1])),
-                        Card(10, 'main/Sprites/Cards/10_hearts.png', (pos[0] + self.modifier * 150, pos[1])),
+                        AltValueCard(
+                            11,
+                            "main/Sprites/Card_Back.png",
+                            1,
+                            (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1]),
+                        ),
+                        Card(
+                            2,
+                            "main/Sprites/Cards/2_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            3,
+                            "main/Sprites/Cards/3_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            4,
+                            "main/Sprites/Cards/4_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            5,
+                            "main/Sprites/Cards/5_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            6,
+                            "main/Sprites/Cards/6_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            7,
+                            "main/Sprites/Cards/7_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            8,
+                            "main/Sprites/Cards/8_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            9,
+                            "main/Sprites/Cards/9_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Cards/10_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Cards/10_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Cards/10_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Cards/10_hearts.png",
+                            (pos[0] + self.modifier * 150, pos[1]),
+                        ),
                     ]
                 case DefaultDecks.Sample1:
                     self.cards = [
-                        Card(10, 'main/Sprites/Card_Back.png', (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1])),
-                        Card(10, 'main/Sprites/Card_Back.png', (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1])),
-                        Card(10, 'main/Sprites/Card_Back.png', (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1])),
+                        Card(
+                            10,
+                            "main/Sprites/Card_Back.png",
+                            (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Card_Back.png",
+                            (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1]),
+                        ),
+                        Card(
+                            10,
+                            "main/Sprites/Card_Back.png",
+                            (pos[0] + 200 * self.modifier - 50 * self.modifier, pos[1]),
+                        ),
                     ]
         else:
             self.cards = cards
         self.pos = pos
-        self.image = pygame.image.load('main/Sprites/Deck.png')
-        self.image = pygame.transform.scale(self.image, (255/2, 381/2))
+        self.image = pygame.image.load("main/Sprites/Deck.png")
+        self.image = pygame.transform.scale(self.image, (255 / 2, 381 / 2))
         self.discard_pile: List[Card | AltValueCard] = []
 
     def draw(self, screen: pygame.Surface):
         screen.blit(self.image, self.pos)
+
     def draw_card(self) -> Card:
         if len(self.cards) == 0:
             self.shuffle_deck()
         top_card = self.cards.pop(0)
         self.discard_pile.append(top_card)
         return top_card
-    
+
     def shuffle_deck(self):
         while len(self.discard_pile) > 0:
             self.cards.append(self.discard_pile.pop())
         shuffle(self.cards)
+
     def to_dict(self) -> Dict:
         return {
             "position": self.pos,
             "modifier": self.modifier,
-            "cards": [card.serialize() for card in self.cards]
+            "cards": [card.serialize() for card in self.cards],
         }
+
     @classmethod
     def from_dict(cls, data):
         cards = []
         for card in data["cards"]:
             cards.append(Card.deserialize(card))
-        return cls(
-            data["position"],
-            data["modifier"],
-            cards
-        )
+        return cls(data["position"], data["modifier"], cards)
+
 
 # used GPT for this since I couldn't be bothered to build this QoL feature, hence the presense of comments
 # At least I found out about enumerate which would have come in handy any time I used temporary counters
-def display_cards(screen, cards: List[Card|AltValueCard]):
+def display_cards(screen, cards: List[Card | AltValueCard]):
     running = True
     clock = pygame.time.Clock()
     y_scroll_offset = 150
@@ -95,7 +167,7 @@ def display_cards(screen, cards: List[Card|AltValueCard]):
                 running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    running = False 
+                    running = False
             if event.type == pygame.MOUSEWHEEL:
                 y_scroll_offset += event.y * 30  # Scroll speed
 
@@ -112,4 +184,3 @@ def display_cards(screen, cards: List[Card|AltValueCard]):
         pygame.display.flip()  # Update the screen with what we've drawn
 
         clock.tick(60)
-    

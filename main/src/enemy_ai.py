@@ -2,14 +2,17 @@ from hand import Hand
 from deck import Deck
 from card import Card, AltValueCard
 
+
 class EnemyAI:
     pass
+
 
 class BasicAI(EnemyAI):
     @staticmethod
     def s_hit(hand: Hand, _):
         return hand.calculate_total() < 17
-    
+
+
 class CheatAI(EnemyAI):
     @staticmethod
     def s_hit(hand: Hand, deck: Deck):

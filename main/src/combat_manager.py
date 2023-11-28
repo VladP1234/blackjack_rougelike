@@ -8,27 +8,43 @@ from level import Combat, Merchant
 from utils import Text
 from typing import Dict
 from time import sleep
-Bleeding = namedtuple('BLEEDING', ['damage'])
+
+Bleeding = namedtuple("BLEEDING", ["damage"])
+
 
 class CombatState(Enum):
     FIGHT = auto()
     REWARD = auto()
+
 
 class CombatManager:
     def __init__(self, UIManager: pygame_gui.UIManager) -> None:
         self.player = Player(Deck((100, 200), False), UIManager=UIManager)
         self.leave_combat = False
         self.state: CombatState = CombatState.FIGHT
-        
+
         # Change this later to an import from a .json
-        self.hit_button = pygame_gui.elements.UIButton(pygame.Rect((100, 400), (50, 50)), text="hit", manager=UIManager)
+        self.hit_button = pygame_gui.elements.UIButton(
+            pygame.Rect((100, 400), (50, 50)), text="hit", manager=UIManager
+        )
         # self.e_hit_button = pygame_gui.elements.UIButton(pygame.Rect((650, 400), (50, 50)), text="hit", manager=UIManager)
-        self.stand_button = pygame_gui.elements.UIButton(pygame.Rect((100, 500), (50, 50)), text="stand", manager=UIManager)
+        self.stand_button = pygame_gui.elements.UIButton(
+            pygame.Rect((100, 500), (50, 50)), text="stand", manager=UIManager
+        )
         # self.e_stand_button = pygame_gui.elements.UIButton(pygame.Rect((650, 500), (50, 50)), text="stand", manager=UIManager)
-        
-        self.rewards_text = pygame_gui.elements.UITextBox(f"REWARDS!", pygame.Rect(300, 50, 200, 50), UIManager)
-        self.gold_button = pygame_gui.elements.UIButton(pygame.Rect((350, 200), (100, 50)), text="50 gold", manager=UIManager)
-        self.exit_combat_button = pygame_gui.elements.UIButton(pygame.Rect(300, 400, 200, 50), text="Back to Map", manager=UIManager, tool_tip_text="Once you leave, you can't return")
+
+        self.rewards_text = pygame_gui.elements.UITextBox(
+            f"REWARDS!", pygame.Rect(300, 50, 200, 50), UIManager
+        )
+        self.gold_button = pygame_gui.elements.UIButton(
+            pygame.Rect((350, 200), (100, 50)), text="50 gold", manager=UIManager
+        )
+        self.exit_combat_button = pygame_gui.elements.UIButton(
+            pygame.Rect(300, 400, 200, 50),
+            text="Back to Map",
+            manager=UIManager,
+            tool_tip_text="Once you leave, you can't return",
+        )
 
         self.ui = []
         self.ui.append(self.hit_button)
@@ -38,21 +54,21 @@ class CombatManager:
         self.ui.append(self.rewards_text)
         self.ui.append(self.gold_button)
         self.ui.append(self.exit_combat_button)
-        
+
         self.combat_ui = []
         self.combat_ui.append(self.hit_button)
         # self.combat_ui.append(self.e_hit_button)
         self.combat_ui.append(self.stand_button)
         # self.combat_ui.append(self.e_stand_button)
-        
+
         self.reward_ui = []
         self.reward_ui.append(self.rewards_text)
         self.reward_ui.append(self.gold_button)
         self.reward_ui.append(self.exit_combat_button)
-        
+
         self.hide_ui()
         self.UIManager = UIManager
-        
+
         self.icons: Dict[str, pygame.Surface] = self.load_icons()
 
     def reset(self):
@@ -62,33 +78,77 @@ class CombatManager:
         self.leave_combat = False
         self.state = CombatState.FIGHT
         self.player.hp = 20
+
     # I know that this is bad code, but there is no real point to cleaning this up
     def load_icons(self):
         return {
-            "Bleeding": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BleedingIcon.png"), (64, 64)),
-            "Stun": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/StunIcon.png"), (64, 64)),
-            "Hex": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/HexIcon.png"), (64, 64)),
-            "Poison": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/PoisonIcon.png"), (64, 64)),
-            "Burn": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BurnIcon.png"), (64, 64)),
-            "Frostbite": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/FrostbiteIcon.png"), (64, 64)),
-            "Weakness": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/WeaknessIcon.png"), (64, 64)),
-            "Vulnerabile": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/VulnerableIcon.png"), (64, 64)),
-            "Silence": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SilenceIcon.png"), (64, 64)),
-            "Slow": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SlowIcon.png"), (64, 64)),
-            "Confusion": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/ConfusionIcon.png"), (64, 64)),
-            "Fear": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/FearIcon.png"), (64, 64)),
-            "Blindness": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BlindnessIcon.png"), (64, 64)),
-            "Strength": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/StrengthIcon.png"), (64, 64)),
-            "Rage": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/RageIcon.png"), (64, 64)),
-            "Armour": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/ArmourIcon.png"), (64, 64)),
-            "Temp HP": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/TempHPIcon.png"), (64, 64)),
-            "Speed": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/SpeedIcon.png"), (64, 64)),
-            "Intangible": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/IntangibleIcon.png"), (64, 64)),
-            "Regen": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/RegenIcon.png"), (64, 64)),
-            "Buffer": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/BufferIcon.png"), (64, 64)),
-            "Dexterity": pygame.transform.scale(pygame.image.load("main/Sprites/Icons/DexterityIcon.png"), (64, 64)),
+            "Bleeding": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/BleedingIcon.png"), (64, 64)
+            ),
+            "Stun": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/StunIcon.png"), (64, 64)
+            ),
+            "Hex": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/HexIcon.png"), (64, 64)
+            ),
+            "Poison": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/PoisonIcon.png"), (64, 64)
+            ),
+            "Burn": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/BurnIcon.png"), (64, 64)
+            ),
+            "Frostbite": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/FrostbiteIcon.png"), (64, 64)
+            ),
+            "Weakness": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/WeaknessIcon.png"), (64, 64)
+            ),
+            "Vulnerabile": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/VulnerableIcon.png"), (64, 64)
+            ),
+            "Silence": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/SilenceIcon.png"), (64, 64)
+            ),
+            "Slow": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/SlowIcon.png"), (64, 64)
+            ),
+            "Confusion": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/ConfusionIcon.png"), (64, 64)
+            ),
+            "Fear": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/FearIcon.png"), (64, 64)
+            ),
+            "Blindness": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/BlindnessIcon.png"), (64, 64)
+            ),
+            "Strength": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/StrengthIcon.png"), (64, 64)
+            ),
+            "Rage": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/RageIcon.png"), (64, 64)
+            ),
+            "Armour": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/ArmourIcon.png"), (64, 64)
+            ),
+            "Temp HP": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/TempHPIcon.png"), (64, 64)
+            ),
+            "Speed": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/SpeedIcon.png"), (64, 64)
+            ),
+            "Intangible": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/IntangibleIcon.png"), (64, 64)
+            ),
+            "Regen": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/RegenIcon.png"), (64, 64)
+            ),
+            "Buffer": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/BufferIcon.png"), (64, 64)
+            ),
+            "Dexterity": pygame.transform.scale(
+                pygame.image.load("main/Sprites/Icons/DexterityIcon.png"), (64, 64)
+            ),
         }
-
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -106,6 +166,7 @@ class CombatManager:
                     self.gold_button.hide()
                 elif event.ui_element == self.exit_combat_button:
                     self.leave_combat = True
+
     def update(self):
         if self.state == CombatState.FIGHT:
             if self.player.effect:
@@ -113,18 +174,22 @@ class CombatManager:
                 self.player.effect = None
             if self.player.standing and not self.enemy.standing:
                 sleep(0.2)
-                self.enemy.hit() if self.enemy.ai.s_hit(self.enemy.hand, self.enemy.deck) else self.enemy.stand()
+                self.enemy.hit() if self.enemy.ai.s_hit(
+                    self.enemy.hand, self.enemy.deck
+                ) else self.enemy.stand()
                 if self.enemy.standing:
                     sleep(0.8)
             if self.player.standing and self.enemy.standing:
                 self.player.turn_end_status()
                 self.enemy.turn_end_status()
+                self.player.turn_start_status()
+                self.enemy.turn_start_status()
                 player_total = self.player.hand.calculate_total()
                 enemy_total = self.enemy.hand.calculate_total()
                 if player_total == 21:
                     card = self.player.hand.cards[-1]
                     if card.on_blackjack_effect:
-                            card.on_blackjack_effect(self)
+                        card.on_blackjack_effect(self)
                 if player_total > enemy_total:
                     if player_total <= 21:
                         self.player.deal_damage(self.enemy, player_total - enemy_total)
@@ -155,14 +220,16 @@ class CombatManager:
     def hide_ui(self):
         for ui in self.ui:
             ui.visible = False
+
     def show_ui(self):
         for ui in self.ui:
             ui.visible = True
         self.change_state(CombatState.FIGHT)
-    
+
     def hide_combat_ui(self):
         for ui in self.combat_ui:
             ui.visible = False
+
     def show_combat_ui(self):
         for ui in self.combat_ui:
             ui.visible = True
@@ -174,7 +241,6 @@ class CombatManager:
     def show_reward_ui(self):
         for ui in self.reward_ui:
             ui.visible = True
-    
 
     def change_state(self, new_state: CombatState):
         if new_state == CombatState.FIGHT:

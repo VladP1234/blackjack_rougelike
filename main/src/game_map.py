@@ -13,20 +13,20 @@ class GameMap:
         self.go_to_combat = False
         self.go_to_merchant = False
         self.floor_num = 1
-        self.buttons: Dict[pygame_gui.elements.UIButton, Combat|Merchant] = {}
+        self.buttons: Dict[pygame_gui.elements.UIButton, Combat | Merchant] = {}
         self.current_floor = self.load_floor(self.floor_num, UIManager)
         self.current_level = self.buttons[list(self.buttons.keys())[0]]
         self.floor_texts = {
             1: make_text("Floor 1", 54),
             2: make_text("Floor 2", 54),
-            3: make_text("Floor 3", 54) 
+            3: make_text("Floor 3", 54),
         }
         self.UIManager = UIManager
-        self.help_message = make_text("Press \"D\" to view your deck", 26)
-        
+        self.help_message = make_text('Press "D" to view your deck', 26)
+
         # self.combat1_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((100, 200), (190, 190)), text="", manager=UIManager)
         # self.ui.append(self.combat1_button)
-        
+
         self.hide_ui()
 
     def reset(self):
@@ -36,7 +36,7 @@ class GameMap:
         self.current_floor = self.load_floor(self.floor_num, self.UIManager)
         self.current_level = self.buttons[list(self.buttons.keys())[0]]
 
-    def load_floor(self, floor_num: int, UIManager) -> Dict[str, Combat|Merchant]:
+    def load_floor(self, floor_num: int, UIManager) -> Dict[str, Combat | Merchant]:
         floors = json_to_dict("floors.json", UIManager)
         # print(floors)
         floor: Dict[str, Combat | Merchant] = floors[str(floor_num)]
@@ -54,7 +54,11 @@ class GameMap:
                     y_mod = -75
                 elif level_id[1] == "B":
                     y_mod = 75
-            button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(100 * level_num - 50, 200 + y_mod, 50, 50), text=f"{level_id}", manager=UIManager)
+            button = pygame_gui.elements.UIButton(
+                relative_rect=pygame.Rect(100 * level_num - 50, 200 + y_mod, 50, 50),
+                text=f"{level_id}",
+                manager=UIManager,
+            )
             if level_num != 1:
                 button.disable()
             self.buttons[button] = level
@@ -81,8 +85,8 @@ class GameMap:
 
     def draw(self, screen: pygame.Surface):
         screen.blit(self.floor_texts[self.floor_num], (350, 50))
-        screen.blit(self.help_message, (350, 500) )
-    
+        screen.blit(self.help_message, (350, 500))
+
     def update(self):
         pass
 
@@ -92,11 +96,13 @@ class GameMap:
             ui.visible = False
         for button in self.buttons:
             button.visible = False
+
     def show_ui(self):
         for ui in self.ui:
             ui.visible = True
         for button in self.buttons:
             button.visible = True
+
     def go_to_next_level(self):
         self.current_level_num += 1
         if self.current_level_num == 8:

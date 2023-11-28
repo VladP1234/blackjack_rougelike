@@ -1,19 +1,21 @@
 import pygame
 
+
 class Text:
     def __init__(self, pos: pygame.Rect, text_surf: pygame.Surface) -> None:
         self.pos = pos
         self.text_surf = text_surf
         self.visible = True
+
     def draw(self, screen: pygame.Surface):
         if self.visible:
             screen.blit(self.text_surf, self.pos)
+
 
 def make_text(text: str, font_size: int, color: tuple = (0, 0, 0)) -> pygame.Surface:
     font = pygame.font.Font(None, font_size)
     text_surface = font.render(text, True, color)
     return text_surface
-
 
 
 # floor1 = Level(Player((623, 200), True))

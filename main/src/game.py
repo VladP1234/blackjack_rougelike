@@ -9,6 +9,7 @@ import pygame
 import pygame_gui
 import sys
 
+
 class GameState(Enum):
     BASE = auto()
     MAP = auto()
@@ -16,6 +17,7 @@ class GameState(Enum):
     MERCHANT = auto()
 
 
+# Main class of the entire game, all other classes are instanciated within this class and "report" to it
 class Game:
     def __init__(self, width=900, height=600, fps=60):
         pygame.init()
@@ -30,7 +32,9 @@ class Game:
         self.base = Base(self.gui_manager)
         self.game_map = GameMap(self.gui_manager)
         self.combat_manager = CombatManager(self.gui_manager)
-        self.merchant_manager = MerchantManager(self.gui_manager, self.combat_manager.player)
+        self.merchant_manager = MerchantManager(
+            self.gui_manager, self.combat_manager.player
+        )
         self.clock = pygame.time.Clock()
 
     def handle_events(self):
@@ -42,7 +46,13 @@ class Game:
                 # if event.key == pygame.K_ESCAPE:
                 #     self.running = False
                 if event.key == pygame.K_d:
-                    display_cards(self.screen, sample(self.combat_manager.player.deck.cards, len(self.combat_manager.player.deck.cards)))
+                    display_cards(
+                        self.screen,
+                        sample(
+                            self.combat_manager.player.deck.cards,
+                            len(self.combat_manager.player.deck.cards),
+                        ),
+                    )
         if self.state == GameState.BASE:
             self.base.handle_events()
         elif self.state == GameState.MAP:
@@ -53,12 +63,14 @@ class Game:
             self.merchant_manager.handle_events()
 
     def update(self):
-        self.gui_manager.update(time_delta=self.clock.tick(60)/1000.0)
+        self.gui_manager.update(time_delta=self.clock.tick(60) / 1000.0)
         if self.state == GameState.BASE:
             self.base.update()
             if self.base.start_run:
                 self.change_state(GameState.MAP)
-                self.combat_manager.player.deck.cards = self.base.deck_selector.selected_deck
+                self.combat_manager.player.deck.cards = (
+                    self.base.deck_selector.selected_deck
+                )
                 self.game_map.reset()
                 self.combat_manager.reset()
                 # self.combat_manager = CombatManager(self.gui_manager)
@@ -74,7 +86,7 @@ class Game:
                 self.game_map.go_to_merchant = False
                 self.change_state(GameState.MERCHANT)
                 # print("entering merchant")
-            self.gui_manager.update(time_delta=self.clock.tick(60)/1000.0)
+            self.gui_manager.update(time_delta=self.clock.tick(60) / 1000.0)
         elif self.state == GameState.COMBAT:
             self.combat_manager.update()
             # if self.combat_manager.effects:
@@ -92,7 +104,7 @@ class Game:
             if self.merchant_manager.leave_merchant:
                 self.game_map.go_to_next_level()
                 self.change_state(GameState.MAP)
-    
+
     def change_state(self, new_state: GameState):
         if new_state == GameState.BASE:
             self.base.show_ui()
@@ -109,9 +121,11 @@ class Game:
         elif new_state == GameState.MERCHANT:
             self.game_map.hide_ui()
             self.merchant_manager.show_ui()
-            self.merchant_manager.enter_merchant(self.game_map.current_level, self.game_map.floor_num, self.gui_manager)
+            self.merchant_manager.enter_merchant(
+                self.game_map.current_level, self.game_map.floor_num, self.gui_manager
+            )
         self.state = new_state
-    
+
     def draw(self):
         self.screen.fill((200, 200, 200))
         self.gui_manager.draw_ui(self.screen)

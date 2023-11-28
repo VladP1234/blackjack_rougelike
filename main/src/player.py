@@ -147,6 +147,7 @@ class Player:
     ):
         offset = 1 if self.is_enemy else -1
         for counter, effect in enumerate(self.status_effects):
+            # print(type(effect), self.is_enemy)
             if isinstance(effect, Blindness):
                 screen.blit(
                     icon_dict["Blindness"], (390 + 365 * offset, counter * 100 + 50)
@@ -154,6 +155,18 @@ class Player:
                 screen.blit(
                     make_text(str(effect.duration), 40, color=(200, 0, 0)),
                     (415 + 340 * offset, counter * 100 + 90),
+                )
+            if isinstance(effect, Bleeding):
+                screen.blit(
+                    icon_dict["Bleeding"], (390 + 365 * offset, counter * 100 + 50)
+                )
+                screen.blit(
+                    make_text(str(effect.duration), 40, color=(0, 0, 0)),
+                    (415 + 340 * offset, counter * 100 + 90),
+                )
+                screen.blit(
+                    make_text(str(effect.damage), 40, color=(0, 0, 0)),
+                    (460 + 340 * offset, counter * 100 + 90),
                 )
 
     def hit(self):
@@ -179,8 +192,9 @@ class Player:
 
     # Status effect code
     def affect(self, effect: StatusEffect):
-        self.status_effects.append(effect)
         effect.on_reveal(self)
+        if not effect.dupe:
+            self.status_effects.append(effect)
 
     def turn_end_status(self):
         for status in self.status_effects:
