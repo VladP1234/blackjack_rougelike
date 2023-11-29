@@ -20,8 +20,10 @@ class GameMap:
             1: make_text("Floor 1", 54),
             2: make_text("Floor 2", 54),
             3: make_text("Floor 3", 54),
+            # 4: make_text("Floor 4", 54),
         }
         self.UIManager = UIManager
+        self.branch = ""
         self.help_message = make_text('Press "D" to view your deck', 26)
 
         # self.combat1_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((100, 200), (190, 190)), text="", manager=UIManager)
@@ -74,6 +76,10 @@ class GameMap:
                     self.current_level = None
                     for button, level in self.buttons.items():
                         if event.ui_element == button:
+                            if len(button.text) == 2:
+                                self.branch = button.text[1]
+                            else:
+                                self.branch = "any"
                             self.current_level = level
                             # print(self.current_level)
                         if type(self.current_level) == Merchant:
@@ -111,6 +117,11 @@ class GameMap:
             self.current_floor = self.load_floor(self.floor_num, self.UIManager)
         for button in self.buttons:
             if button.text[0] == str(self.current_level_num):
-                button.enable()
+                if (
+                    len(button.text) == 2 and self.branch == button.text[1]
+                ) or self.branch == "any":
+                    button.enable()
+                elif len(button.text) == 1:
+                    button.enable()
             else:
                 button.disable()

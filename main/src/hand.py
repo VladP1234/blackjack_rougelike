@@ -42,7 +42,7 @@ class Hand:
             return non_alt_sum
 
         best_sum = non_alt_sum
-
+        # goes through all combination of the possible values of cards and selects the closest one below 21
         for alt_value_option in product(*alt_value_cards):
             current_sum = non_alt_sum + sum(alt_value_option)
             if best_sum < current_sum <= 21:

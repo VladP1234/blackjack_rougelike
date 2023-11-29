@@ -5887,5 +5887,79 @@
             }
         },
         "7": "Merchant"
+    },
+    "4": {
+        "1": {
+            "enemy": {
+                "is_enemy": true,
+                "deck": {
+                    "position": [
+                        623,
+                        200
+                    ],
+                    "modifier": -1,
+                    "cards": [
+                        {
+                            "value": 11,
+                            "alt_value": 1,
+                            "name": "Ace of Diamonds",
+                            "image_path": "main/Sprites/Cards/A_diamonds.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": "Bleeding",
+                            "on_reveal_effect_attrs": {
+                                "duration": 11,
+                                "damage_per_turn": 11
+                            },
+                            "on_reveal_effect_target": "player",
+                            "on_blackjack_effect": "InstantTempHp",
+                            "on_blackjack_effect_target": "enemy",
+                            "on_blackjack_effect_attrs": {
+                                "temp_hp_amount": 10
+                            }
+                        },
+                        {
+                            "value": 10,
+                            "alt_value": 1,
+                            "name": "King of Diamonds",
+                            "image_path": "main/Sprites/Cards/K_diamonds.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": "Bleeding",
+                            "on_reveal_effect_attrs": {
+                                "duration": 10,
+                                "damage_per_turn": 10
+                            },
+                            "on_reveal_effect_target": "player",
+                            "on_blackjack_effect": "InstantTempHp",
+                            "on_blackjack_effect_target": "enemy",
+                            "on_blackjack_effect_attrs": {
+                                "temp_hp_amount": 10
+                            }
+                        }
+                    ]
+                },
+                "hp": 10,
+                "max_hp": 20,
+                "ai": "CheatAI",
+                "stats": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "armour": 0,
+                    "is_blind": false,
+                    "is_weak": false,
+                    "is_vulnerable": false,
+                    "is_raging": false,
+                    "is_stunned": false
+                }
+            },
+            "reward": {
+                "gold": 50
+            }
+        }
     }
 }

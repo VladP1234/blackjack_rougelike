@@ -177,9 +177,8 @@ class CombatManager:
                 self.enemy.hit() if self.enemy.ai.s_hit(
                     self.enemy.hand, self.enemy.deck
                 ) else self.enemy.stand()
-                if self.enemy.standing:
-                    sleep(0.8)
             if self.player.standing and self.enemy.standing:
+                sleep(0.8)
                 self.player.turn_end_status()
                 self.enemy.turn_end_status()
                 self.player.turn_start_status()

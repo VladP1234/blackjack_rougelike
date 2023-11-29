@@ -113,7 +113,7 @@ class MerchantManager:
     @staticmethod
     def get_merchant_cards(floor):
         # Read in the JSON file
-        with open("merchant_cards.json", "r") as f:
+        with open("expanded_merchant_cards_v2.json", "r") as f:
             merchant_cards_data = json.load(f)
 
         merchant_cards_new = {

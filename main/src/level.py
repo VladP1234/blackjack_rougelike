@@ -1,12 +1,14 @@
 from player import Player
+from card import Card
 from deck import Deck, DefaultDecks
-from typing import Dict
+from typing import Dict, List
 from enemy_ai import BasicAI
 
 
 class Reward:
     def __init__(self, gold) -> None:
         self.gold: int = gold
+        self.cards: List[Card]
 
     def to_dict(self):
         return {"gold": self.gold}
@@ -37,46 +39,46 @@ class Merchant:
         pass
 
 
-default_deck = Deck((623, 200), True, DefaultDecks.Base)
+# default_deck = Deck((623, 200), True, DefaultDecks.Base)
 
-floors: Dict[str, Dict[str, Combat | Merchant]] = {
-    "1": {
-        "1": Merchant(),
-        "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "4": Merchant(),
-        "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "7": Merchant(),
-    },
-    "2": {
-        "1": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(50)),
-        "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "4": Merchant(),
-        "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "7": Merchant(),
-    },
-    "3": {
-        "1": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(50)),
-        "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "4": Merchant(),
-        "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
-        "7": Merchant(),
-    },
-}
+# floors: Dict[str, Dict[str, Combat | Merchant]] = {
+#     "1": {
+#         "1": Merchant(),
+#         "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "4": Merchant(),
+#         "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "7": Merchant(),
+#     },
+#     "2": {
+#         "1": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(50)),
+#         "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "4": Merchant(),
+#         "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "7": Merchant(),
+#     },
+#     "3": {
+#         "1": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(50)),
+#         "2A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "2B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "3B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "4": Merchant(),
+#         "5A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "5B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6A": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "6B": Combat(Player(default_deck, True, enemy_ai=BasicAI()), Reward(100)),
+#         "7": Merchant(),
+#     },
+# }
