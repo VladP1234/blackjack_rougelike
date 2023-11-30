@@ -8,3 +8,10 @@ In text form cause I can't be asked to make a tutorial
     - They have on reveal effects, i.e. whenever you draw the card, you get an effect. Most of them heal you for a lot
 3. If you hit "d" during combat, you get to see your upcoming cards (in random order)
 4. 'Alties' is a dev deck, use it if you wish to have no fun. Just spam hit and it will give you blackjack every time irrespective of your draw pile
+5. Rules are as follows:
+    - The person who has a lower score takes damage equal to the difference;
+        - For example, you have 20 and the opponent scores a 15, the opponent takes 5 damage.
+    - If a person goes bust, then they take damage equal to opponent's score - 11
+    - If both go bust, then nothing happens
+    - Some cards have on reveal effects - these effects happen when the card is drawn
+    - Some have on blackjack effects - these effects happen when the card is drawn and the player's total reaches 21

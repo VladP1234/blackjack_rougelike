@@ -1,6 +1,231 @@
 {
     "1": {
-        "1": "Merchant",
+        "1": {
+            "enemy": {
+                "is_enemy": true,
+                "deck": {
+                    "position": [
+                        623,
+                        200
+                    ],
+                    "modifier": -1,
+                    "cards": [
+                        {
+                            "value": 11,
+                            "name": null,
+                            "image_path": "main/Sprites/Card_Back.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null,
+                            "alt_value": 1
+                        },
+                        {
+                            "value": 2,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/2_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 3,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/3_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 4,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/4_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 5,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/5_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 6,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/6_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 7,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/7_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 8,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/8_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 9,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/9_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 10,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/10_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 10,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/10_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 10,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/10_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        },
+                        {
+                            "value": 10,
+                            "name": null,
+                            "image_path": "main/Sprites/Cards/10_hearts.png",
+                            "pos": [
+                                473,
+                                200
+                            ],
+                            "on_reveal_effect": null,
+                            "on_reveal_effect_attrs": null,
+                            "on_reveal_effect_target": null,
+                            "on_blackjack_effect": null,
+                            "on_blackjack_effect_attrs": null,
+                            "on_blackjack_effect_target": null
+                        }
+                    ]
+                },
+                "hp": 10,
+                "max_hp": 20,
+                "ai": "HyperAgressiveAI",
+                "stats": {
+                    "strength": 0,
+                    "dexterity": 0,
+                    "armour": 0,
+                    "is_blind": false,
+                    "is_weak": false,
+                    "is_vulnerable": false,
+                    "is_raging": false,
+                    "is_stunned": false
+                }
+            },
+            "reward": {
+                "gold": 50
+            }
+        },
         "2A": {
             "enemy": {
                 "is_enemy": true,
@@ -211,7 +436,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -437,7 +662,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -663,7 +888,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -889,7 +1114,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -1116,7 +1341,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -1342,7 +1567,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -1568,7 +1793,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -1794,7 +2019,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -2023,7 +2248,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -2249,7 +2474,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "HyperAgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -2475,7 +2700,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "HyperAgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -2701,7 +2926,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -2927,7 +3152,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -3154,7 +3379,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -3380,7 +3605,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "HyperPassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -3832,7 +4057,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -4061,7 +4286,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -4287,7 +4512,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -4513,7 +4738,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "HyperPassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -4739,7 +4964,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -4965,7 +5190,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -5192,7 +5417,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "AgressiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -5418,7 +5643,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "HyperPassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -5644,7 +5869,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,
@@ -5870,7 +6095,7 @@
                 },
                 "hp": 10,
                 "max_hp": 20,
-                "ai": "BasicAI",
+                "ai": "PassiveAI",
                 "stats": {
                     "strength": 0,
                     "dexterity": 0,

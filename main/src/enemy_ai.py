@@ -19,7 +19,7 @@ class AgressiveAI(EnemyAI):
         return hand.calculate_total() < 18
 
 
-class HyperAgressive(EnemyAI):
+class HyperAgressiveAI(EnemyAI):
     @staticmethod
     def s_hit(hand: Hand, _):
         return hand.calculate_total() < 20
