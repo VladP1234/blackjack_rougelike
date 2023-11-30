@@ -13,6 +13,30 @@ class BasicAI(EnemyAI):
         return hand.calculate_total() < 17
 
 
+class AgressiveAI(EnemyAI):
+    @staticmethod
+    def s_hit(hand: Hand, _):
+        return hand.calculate_total() < 18
+
+
+class HyperAgressive(EnemyAI):
+    @staticmethod
+    def s_hit(hand: Hand, _):
+        return hand.calculate_total() < 20
+
+
+class PassiveAI(EnemyAI):
+    @staticmethod
+    def s_hit(hand: Hand, _):
+        return hand.calculate_total() < 16
+
+
+class HyperPassiveAI(EnemyAI):
+    @staticmethod
+    def s_hit(hand: Hand, _):
+        return hand.calculate_total() < 14
+
+
 class CheatAI(EnemyAI):
     @staticmethod
     def s_hit(hand: Hand, deck: Deck):

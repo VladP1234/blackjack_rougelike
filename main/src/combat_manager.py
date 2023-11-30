@@ -29,7 +29,7 @@ class CombatManager:
         )
         # self.e_hit_button = pygame_gui.elements.UIButton(pygame.Rect((650, 400), (50, 50)), text="hit", manager=UIManager)
         self.stand_button = pygame_gui.elements.UIButton(
-            pygame.Rect((100, 500), (50, 50)), text="stand", manager=UIManager
+            pygame.Rect((100, 500), (100, 50)), text="stand", manager=UIManager
         )
         # self.e_stand_button = pygame_gui.elements.UIButton(pygame.Rect((650, 500), (50, 50)), text="stand", manager=UIManager)
 
@@ -189,6 +189,7 @@ class CombatManager:
                     card = self.player.hand.cards[-1]
                     if card.on_blackjack_effect:
                         card.on_blackjack_effect(self)
+
                 if player_total > enemy_total:
                     if player_total <= 21:
                         self.player.deal_damage(self.enemy, player_total - enemy_total)
