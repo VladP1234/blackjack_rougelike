@@ -1,5 +1,6 @@
 **Some info before you start playing**
-In text form cause I can't be asked to make a tutorial
+Run `main.py` from the folder named `Blackjack`
+
 1. Each card in your starting deck has an effect if you get blackjack
     - For example, if you have 16 and topdeck a 5 of hearts, then you heal for 5
     - Aces always give 11 worth irrespective of whether they are counted as 1 or 11
